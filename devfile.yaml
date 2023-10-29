@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: nodejs
+  name: nodejs-student-registration-webapp
   displayName: Node.js Runtime
   description: Node.js 16 application
   icon: https://nodejs.org/static/images/logos/nodejs-new-pantone-black.svg
@@ -21,16 +21,16 @@ attributes:
   dw.metadata.annotations:
     che.eclipse.org/devfile-source: |
       scm:
-        repo: https://github.com/marcosserranojr/NodeJs-Express-Frontend-StudentAPI.git
+        repo: https://github.com/marcosserranojr/student-registration-webapp.git
         fileName: devfile.yaml
       factory:
         params: >-
-          url=https://github.com/marcosserranojr/NodeJs-Express-Frontend-StudentAPI.git
+          url=https://github.com/marcosserranojr/student-registration-webapp.git
 projects:
   - git:
       remotes:
-        origin: https://github.com/marcosserranojr/NodeJs-Express-Frontend-StudentAPI.git
-    name: nodejs-studentapi-frontend
+        origin: https://github.com/marcosserranojr/student-registration-webapp.git
+    name: nodejs-student-registration-webap
 components:
   - attributes:
       controller.devfile.io/merge-contribution: true
