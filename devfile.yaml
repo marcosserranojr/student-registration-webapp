@@ -55,7 +55,7 @@ components:
           value: https://open-vsx.org
         - name: NODE_EXTRA_CA_CERTS
           value: /public-certs/ca-certs.ca-bundle.crt
-      image: quay.io/devfile/universal-developer-image:ubi9-latest
+      image: quay.io/devfile/universal-developer-image:ubi9-495c904
       memoryLimit: 1G
       mountSources: true
       sourceMapping: /projects
