@@ -40,7 +40,7 @@ components:
       memoryLimit: 1Gi
       memoryRequest: 512Mi
       mountSources: true
-      sourceMapping: /projects
+      sourceMapping: /
       volumeMounts:
         - name: npm
           path: /home/user/.npm
