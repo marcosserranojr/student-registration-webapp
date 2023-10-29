@@ -1,6 +1,6 @@
 schemaVersion: 2.1.0
 metadata:
-  name: studen-registration-webapp
+  name: student-registration-webapp
 attributes:
   controller.devfile.io/devworkspace-config:
     name: devworkspace-config
