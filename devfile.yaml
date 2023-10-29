@@ -40,7 +40,7 @@ components:
       memoryLimit: 1Gi
       memoryRequest: 512Mi
       mountSources: true
-      sourceMapping: /
+      sourceMapping: /projects
       volumeMounts:
         - name: npm
           path: /home/user/.npm
@@ -53,7 +53,7 @@ commands:
     exec:
       label: "Download dependencies"
       component: tools
-      workingDir: ${PROJECTS_ROOT}/
+      workingDir: ${PROJECTS_ROOT}/web-nodejs-sample/
       commandLine: "npm install"
       group:
         kind: build
