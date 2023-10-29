@@ -93,6 +93,9 @@ label, input{
     border-radius: 5px;
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
     padding-bottom: 1.5em;
+    padding-left: 1.5em; 
+    padding-right: 1.5em; 
+    padding-top: 1em;
     overflow:auto;
     height:15em ;
      
@@ -100,7 +103,8 @@ label, input{
 
 .tblStudents{    
     min-width: auto;
-    background-color:aliceblue;   
+    background-color:aliceblue; 
+     
 
 }
 td, th{

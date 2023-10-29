@@ -1,3 +1,5 @@
+
+
 const studentAPIURL = 'http://studentapi-team-one.apps.vapo-aws-sbx.va.gov/student';
 class Student{
     constructor(id,fname,lname,email,age,dob)
@@ -15,51 +17,32 @@ const student = new Student();
 //Global Vairables
 let apiMethod ={};
 let navIndex=0;
+
 //Global Defined HTML Elements
 const mainEl = document.querySelector("main");
 const navEl = document.querySelector("nav");
-//Defined HTML content
-const studentPageHTML = `
-    <div class="heading"><h3>View Registered Students</h3>
-        <button id="view" type="button" class="button">View</button> 
-    </div>
-    <div id=tblDiv>
-        <table id="table" class="tblStudents">
-            <thead>
-                <tr id="theadTr"></tr>
-            </thead>
-            <tbody id="tbStudent"></tbody>       
-        </table></div>`;  
-const registerPageHTML =`
-    <div class="main">
-        <div class="heading">
-            <h3>Register a Student</h3>
-        </div>
-        <div style="padding: 1em;">
-            <form id="form" method="post" class="form">
-                <label for="firstName">First Name</label>
-                <div><input type="text" id="firstName" name="firstName"></div>
-                <label>Last Name</label>
-                <div><input type="text" id="lastName" name="lastName"></div>
-                <label for="studentEmail">Email</label>
-                <div><input type="email" id="studentEmail" name="email"></div>
-                <label for="dob">Date of Birth</label>
-                <div><input type="date" id="dob" name="dob"></div>
-                <div style="padding: 1em;"><input type="submit" value="Add Student"></div>
-            </form>            
-        <div><h3 id="statMsg"></h3>`;
-//FUNCTIONS USED
 
+
+//FUNCTIONS USED
 const navChildClick=(event) =>{
     navIndex = Array.prototype.indexOf.call(navEl.children, event.target);
+    if (navIndex==0)
+    {        
+        mainEl.innerHTML = null;
+        console.log ("Students Nav clicked")
+        mainEl.insertAdjacentHTML('afterbegin', homePageHTML);
+        const btnViewEl = document.querySelector('#view');
+        btnViewEl.addEventListener('click', clickViewStudents);     
+        
+    }
+    
     if (navIndex==1)
     {        
         mainEl.innerHTML = null;
         console.log ("Students Nav clicked")
         mainEl.insertAdjacentHTML('afterbegin', studentPageHTML);
         const btnViewEl = document.querySelector('#view');
-        btnViewEl.addEventListener('click', clickViewStudents);
-       // viewEl.classList.add("studentView");
+        btnViewEl.addEventListener('click', clickViewStudents);     
         
     }
     if (navIndex==2)
@@ -70,10 +53,19 @@ const navChildClick=(event) =>{
         const formEl = document.getElementById("form");
         formEl.addEventListener('submit', submitAddStudent);
     }
-    if(navIndex==0 || navIndex==3){mainEl.innerHTML=null;}
-};
+    if (navIndex==5)// bug added
+    {
+        mainEl.innerHTML=null;
+        console.log("Register Nav clicked");       
+        mainEl.insertAdjacentHTML('afterbegin', loginPageHTML);
+        const formEl = document.getElementById("form");
+        formEl.addEventListener('submit', submitAddStudent);
 
-//Function uses fetch to retriece api data and works
+    }
+    if(navIndex>=4  ){mainEl.innerHTML=null;}
+}; 
+
+//Function uses fetch to retrieve api data and works
 //for both GET and POST
 const apiCall = async (url, apiMeth,type) =>{        
         try{
