@@ -1,18 +1,12 @@
 schemaVersion: 2.1.0
 metadata:
-  name: nodejs-student-registration-webapp
-  displayName: Node.js Runtime
-  description: Node.js 16 application
-  icon: https://nodejs.org/static/images/logos/nodejs-new-pantone-black.svg
-  tags:
-    - Node.js
-    - Express
-    - ubi8
-  projectType: Node.js
-  language: JavaScript
-  version: 2.1.1
+  attributes:
+    metadata-name-field: generateName
+    metadata-name-original-value: student-registration-webapp
+  name: student-registration-webapp
   namespace: devspaces-vaaacserram
 attributes:
+  che-theia.eclipse.org/sidecar-policy: mergeImage
   controller.devfile.io/devworkspace-config:
     name: devworkspace-config
     namespace: devspaces-openshift
@@ -20,36 +14,35 @@ attributes:
   controller.devfile.io/storage-type: per-workspace
   dw.metadata.annotations:
     che.eclipse.org/devfile-source: |
-      scm:
-        repo: https://github.com/marcosserranojr/student-registration-webapp.git
-        fileName: devfile.yaml
+      url:
+        location: https://github.com/marcosserranojr/student-registration-webapp.git
       factory:
-        params: >-
-          url=https://github.com/marcosserranojr/student-registration-webapp.git
+        params: url=https://github.com/marcosserranojr/student-registration-webapp.git
 projects:
   - git:
       remotes:
         origin: https://github.com/marcosserranojr/student-registration-webapp.git
-    name: nodejs-student-registration-webap
+    name: student-registration-webapp
 components:
-  - attributes:
-      controller.devfile.io/merge-contribution: true
-    container:
-      endpoints:
-        - exposure: public
-          name: nodejs
-          protocol: http
-          targetPort: 3000
-      env:       
+  - container:
+      env:
+        - name: CHE_DASHBOARD_URL
+          value: https://devspaces.apps.vapo-sbx.va.gov
+        - name: CHE_PLUGIN_REGISTRY_URL
+          value: https://devspaces.apps.vapo-sbx.va.gov/plugin-registry/v3
+        - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+          value: http://plugin-registry.devspaces-openshift.svc:8080/v3
+        - name: CLUSTER_CONSOLE_URL
+          value: https://console.vapo-sbx.va.gov
+        - name: CLUSTER_CONSOLE_TITLE
+          value: OpenShift console
         - name: OPENVSX_REGISTRY_URL
-          value: https://open-vsx.org
+          value: 'https://open-vsx.org'
         - name: NODE_EXTRA_CA_CERTS
           value: /public-certs/ca-certs.ca-bundle.crt
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
-      memoryLimit: 1G
-      mountSources: true
+      image: registry.redhat.io/devspaces/udi-rhel8@sha256:15e62bd71b7edd6afbf01d536d9839af649b87c17c1bfcbbd3102f90d470c097
       sourceMapping: /projects
-    name: tools
+    name: universal-developer-image
 commands:
   - exec:
       commandLine: npm install
