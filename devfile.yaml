@@ -53,7 +53,7 @@ commands:
     exec:
       label: "Download dependencies"
       component: tools
-      workingDir: ${PROJECTS_ROOT}/web-nodejs-sample/
+      workingDir: ${PROJECTS_ROOT}/student-registration-webapp/
       commandLine: "npm install"
       group:
         kind: build
@@ -61,7 +61,7 @@ commands:
     exec:
       label: "Run the web app"
       component: tools
-      workingDir: ${PROJECTS_ROOT}/app
+      workingDir: ${PROJECTS_ROOT}/student-registration-webapp/app
       commandLine: "nodemon app.js"
       group:
         kind: run  
@@ -69,7 +69,7 @@ commands:
     exec:
       label: "Run the web app (debugging enabled)"
       component: tools
-      workingDir: ${PROJECTS_ROOT}/app
+      workingDir: ${PROJECTS_ROOT}/student-registration-webapp/app
       commandLine: "nodemon --inspect app.js"
       group:
         kind: debug
