@@ -53,7 +53,7 @@ commands:
     exec:
       label: "Download dependencies"
       component: tools
-      workingDir: ${PROJECTS_ROOT}/app
+      workingDir: ${PROJECTS_ROOT}
       commandLine: "npm install"
       group:
         kind: build
