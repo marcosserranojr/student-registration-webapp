@@ -1,0 +1,86 @@
+schemaVersion: 2.1.0
+metadata:
+  name: studen-registration-webapp
+attributes:
+  controller.devfile.io/devworkspace-config:
+    name: devworkspace-config
+    namespace: devspaces-openshift
+  controller.devfile.io/scc: container-build
+  controller.devfile.io/storage-type: per-workspace
+projects:
+  - git:
+      remotes:
+        origin: https://github.com/marcosserranojr/student-registration-webapp.git
+    name: student-registration-webapp
+components:
+  - container:
+      cpuLimit: '0.5'
+      cpuRequest: '0.25'
+      endpoints:
+        - exposure: public
+          name: nodejs
+          protocol: http
+          targetPort: 3000
+      env:
+        - name: CHE_DASHBOARD_URL
+          value: https://devspaces.apps.vapo-sbx.va.gov
+        - name: CHE_PLUGIN_REGISTRY_URL
+          value: https://devspaces.apps.vapo-sbx.va.gov/plugin-registry/v3
+        - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+          value: http://plugin-registry.devspaces-openshift.svc:8080/v3
+        - name: CLUSTER_CONSOLE_URL
+          value: https://console.vapo-sbx.va.gov
+        - name: CLUSTER_CONSOLE_TITLE
+          value: OpenShift console
+        - name: OPENVSX_REGISTRY_URL
+          value: https://open-vsx.org
+        - name: NODE_EXTRA_CA_CERTS
+          value: /public-certs/ca-certs.ca-bundle.crt
+      image: registry.redhat.io/devspaces/udi-rhel8@sha256:15e62bd71b7edd6afbf01d536d9839af649b87c17c1bfcbbd3102f90d470c097
+      memoryLimit: 1Gi
+      memoryRequest: 512Mi
+      mountSources: true
+      sourceMapping: /projects
+      volumeMounts:
+        - name: npm
+          path: /home/user/.npm
+    name: tools
+  - name: npm
+    volume:
+      size: 1G
+commands:
+  - id: 1-dependencies
+    exec:
+      label: "Download dependencies"
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/web-nodejs-sample/app
+      commandLine: "npm install"
+      group:
+        kind: build
+  - id: 2-run
+    exec:
+      label: "Run the web app"
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/web-nodejs-sample/app
+      commandLine: "nodemon app.js"
+      group:
+        kind: run  
+  - id: 3-debug
+    exec:
+      label: "Run the web app (debugging enabled)"
+      component: tools
+      workingDir: ${PROJECTS_ROOT}/web-nodejs-sample/app
+      commandLine: "nodemon --inspect app.js"
+      group:
+        kind: debug
+        isDefault: true
+  - id: 4-stopapp
+    exec:
+      label: "Stop the web app"
+      component: tools
+      commandLine: >-
+          node_server_pids=$(pgrep -fx '.*nodemon (--inspect )?app.js' | tr "\\n" " ") &&
+          echo "Stopping node server with PIDs: ${node_server_pids}" && 
+          kill -15 ${node_server_pids} &>/dev/null && echo 'Done.'
+      group:
+        kind: run
