@@ -1,0 +1,7 @@
+node_modules/
+
+.odo
+
+1devfile.yaml
+
+1Dockerfile
