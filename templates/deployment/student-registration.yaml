@@ -16,8 +16,7 @@ spec:
     spec:
       containers:
         - name: container
-          image: >-
-            quay.vapo.va.gov/vapo_tst/0001-dapp-tst/frontend:regisapp1.0
+          image: {{ .Values.imageRepoTag }}
           ports:
             - containerPort: 8080
               protocol: TCP

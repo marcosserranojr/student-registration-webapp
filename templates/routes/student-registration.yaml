@@ -10,7 +10,7 @@ spec:
     kind: Service
     name: {{ .Values.applicationName }} 
   tls: null
-  host: student-registration.apps.vapo-aws-sbx.va.gov
+  host: {{ .Values.applicationName }}.apps.vapo-aws-sbx.va.gov
   path: /
   port:
     targetPort: 3000-tcp
