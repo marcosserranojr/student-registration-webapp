@@ -25,7 +25,7 @@
           deployment: {{ .Values.applicationName }} 
       spec:
         containers:
-        - image: quay.vapo.va.gov/vapo_tst/0001-dapp-tst/frontend: {{ .Values.tagName }} 
+        - image: {{ .Values.imageLocation }}{{ .Values.tagName }} 
           imagePullPolicy: IfNotPresent
           name: registration
           ports:
