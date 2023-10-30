@@ -1,25 +1,31 @@
-- apiVersion: apps/v1
-  kind: Deployment
-  metadata:    
-    name: {{ .Values.applicationName }} 
-    namespace: {{ .Values.namespace }}    
-  spec:    
-    replicas: 1    
-    selector:
-      matchLabels:
-        app: {{ .Values.applicationName }}    
-    template:
-      metadata:        
-        labels:
-          app: {{ .Values.applicationName }} 
-          deployment: {{ .Values.applicationName }} 
-      spec:
-        containers:
-        - image: quay.vapo.va.gov/vapo_tst/0001-dapp-tst/frontend:regisapp1.0
-          imagePullPolicy: IfNotPresent
-          name: {{ .Values.applicationName }} 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.applicationName }}
+  annotations: {}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.applicationName }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.applicationName }}
+    spec:
+      containers:
+        - name: container
+          image: >-
+            quay.vapo.va.gov/vapo_tst/0001-dapp-tst/frontend:regisapp1.0
           ports:
-          - containerPort: 8080
-            protocol: TCP
-        
-  
+            - containerPort: 8080
+              protocol: TCP
+          env: []
+      imagePullSecrets: []
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  paused: false
