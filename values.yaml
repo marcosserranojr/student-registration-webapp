@@ -6,7 +6,7 @@ namespace:
 #-- The name of the application being deployed that will be applied to all artifacts
 applicationName:
 
-imageRepoTag: quay.vapo.va.gov/vapo_tst/0001-dapp-tst/frontend:regisapp1.0
+imageRepoTag: quay.vapo.va.gov/vapo_tst/0001-dapp-tst/frontend:regisapp1.1
 #-- The latest image tag you wish to deploy
 
 
