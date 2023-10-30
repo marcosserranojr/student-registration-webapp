@@ -1,3 +1,13 @@
-#Dynamic Values
+#------ Dynamic Values Added to YAML Files ---------
+
+#-- The Namespace creating the yaml files on
 namespace:
 
+#-- The name of the application being deployed that will be applied to all artifacts
+deploymentName:
+
+#-- The latest image tag you wish to deploy
+imageTag:
+
+#-- The number of pods you wish to have running default is one
+replicasNum: 1
