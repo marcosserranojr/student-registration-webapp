@@ -6,9 +6,11 @@ namespace:
 #-- The name of the application being deployed that will be applied to all artifacts
 applicationName:
 
-imageRepoTag: quay.vapo.va.gov/vapo_tst/0001-dapp-tst/frontend:regisapp1.1
+imageRepoTag: regisapp1.0
 #-- The latest image tag you wish to deploy
 
 
 #-- The number of pods you wish to have running default is one
 replicasNum: 1
+
+imageRepoLocation: 'quay.vapo.va.gov/vapo_tst/0001-dapp-tst/frontend:'

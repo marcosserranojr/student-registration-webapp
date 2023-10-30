@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: container
-          image: {{ .Values.imageRepoTag }}
+          image: {{ .Values.imageRepoLocation }}{{ .Values.imageRepoTag }}
           ports:
             - containerPort: 8080
               protocol: TCP
