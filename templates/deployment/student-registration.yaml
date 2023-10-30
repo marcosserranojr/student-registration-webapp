@@ -3,23 +3,13 @@
   metadata:    
     name: {{ .Values.applicationName }} 
     namespace: {{ .Values.namespace }}    
-  spec:
-    progressDeadlineSeconds: 600
-    replicas: 1
-    revisionHistoryLimit: 10
+  spec:    
+    replicas: 1    
     selector:
       matchLabels:
-        app: {{ .Values.applicationName }} 
-    strategy:
-      rollingUpdate:
-        maxSurge: 25%
-        maxUnavailable: 25%
-      type: RollingUpdate
+        app: {{ .Values.applicationName }}    
     template:
-      metadata:
-        annotations:
-          openshift.io/generated-by: OpenShiftWebConsole
-        creationTimestamp: null
+      metadata:        
         labels:
           app: {{ .Values.applicationName }} 
           deployment: {{ .Values.applicationName }} 
@@ -27,16 +17,9 @@
         containers:
         - image: quay.vapo.va.gov/vapo_tst/0001-dapp-tst/frontend:regisapp1.0
           imagePullPolicy: IfNotPresent
-          name: registration
+          name: {{ .Values.applicationName }} 
           ports:
           - containerPort: 8080
             protocol: TCP
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-        dnsPolicy: ClusterFirst
-        restartPolicy: Always
-        schedulerName: default-scheduler
-        securityContext: {}
-        terminationGracePeriodSeconds: 30
+        
   

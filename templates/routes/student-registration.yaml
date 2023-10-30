@@ -3,8 +3,7 @@
   kind: Route
   metadata:
     name: {{ .Values.applicationName }} 
-    namespace: {{ .Values.namespace }} 
-  
+    namespace: {{ .Values.namespace }}   
   spec:
     host: {{ .Values.applicationName }}.apps.vapo-aws-sbx.va.gov
     path: /
@@ -12,20 +11,5 @@
       targetPort: 3000-tcp
     to:
       kind: Service
-      name: registration
-      weight: 100
-    wildcardPolicy: None
-  status:
-    ingress:
-    - conditions:
-      - lastTransitionTime: "2023-10-28T23:47:27Z"
-        status: "True"
-        type: Admitted
-      host: registration-students.apps.vapo-aws-sbx.va.gov
-      routerCanonicalHostname: router-default.apps.vapo-aws-sbx.va.gov
-      routerName: default
-      wildcardPolicy: None
-kind: List
-metadata:
-  resourceVersion: ""
-  selfLink: ""
+      name: {{ .Values.applicationName }} 
+      

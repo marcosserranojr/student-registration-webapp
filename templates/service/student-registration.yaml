@@ -2,14 +2,7 @@
   kind: Service 
     name: {{ .Values.applicationName }}
     namespace: {{ .Values.namespace }}    
-  spec:
-    clusterIP: 172.30.53.143
-    clusterIPs:
-    - 172.30.53.143
-    internalTrafficPolicy: Cluster
-    ipFamilies:
-    - IPv4
-    ipFamilyPolicy: SingleStack
+  spec:    
     ports:
     - name: 3000-tcp
       port: 3000
@@ -18,7 +11,4 @@
     selector:
       app: {{ .Values.applicationName }}
       deployment: {{ .Values.applicationName }}
-    sessionAffinity: None
-    type: ClusterIP
-  status:
-    loadBalancer: {}
+   
