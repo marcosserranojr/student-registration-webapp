@@ -24,6 +24,8 @@ const navEl = document.querySelector("nav");
 
 
 //FUNCTIONS USED
+function verUtilized(){ return "version:1.0"}
+
 const navChildClick=(event) =>{
     navIndex = Array.prototype.indexOf.call(navEl.children, event.target);
     if (navIndex==0)
