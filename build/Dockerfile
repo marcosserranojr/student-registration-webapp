@@ -1,13 +1,13 @@
 # Install the app dependencies in a full Node docker image
-#FROM registry.access.redhat.com/ubi8/nodejs-18:latest
+FROM registry.access.redhat.com/ubi8/nodejs-18:latest
 
-FROM registry.access.redhat.com/ubi9/nodejs-18:1-70.1697667811
+#FROM registry.access.redhat.com/ubi9/nodejs-18:1-70.1697667811
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install app dependencies
-RUN npm install --omit=dev --strict-ssl false 
+RUN npm install --production --strict-ssl false 
 
 # Copy the dependencies into a Slim Node docker image
 #FROM registry.access.redhat.com/ubi8/nodejs-18-minimal:latest
