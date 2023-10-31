@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 
-const PORT =  3000;
-const VERSION = 1.0;
+const PORT=3000;
+const VERSION=1.0;
 
  
 app.listen(PORT, () => {
