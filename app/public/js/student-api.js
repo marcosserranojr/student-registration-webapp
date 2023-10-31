@@ -55,7 +55,7 @@ const navChildClick=(event) =>{
         const formEl = document.getElementById("form");
         formEl.addEventListener('submit', submitAddStudent);
     }
-    if (navIndex==5)// bug added
+    if (navIndex==3)// bug added
     {
         mainEl.innerHTML=null;
         console.log("Register Nav clicked");       
