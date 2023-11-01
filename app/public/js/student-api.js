@@ -24,7 +24,7 @@ const navEl = document.querySelector("nav");
 
 
 //FUNCTIONS USED
-function verUtilized(){ return "version:1.0.0"}
+function verUtilized(){ return "version:1.0.1"}
 
 const navChildClick=(event) =>{
     navIndex = Array.prototype.indexOf.call(navEl.children, event.target);
@@ -55,7 +55,7 @@ const navChildClick=(event) =>{
         const formEl = document.getElementById("form");
         formEl.addEventListener('submit', submitAddStudent);
     }
-    if (navIndex==5)// bug added
+    if (navIndex==3)// bug added
     {
         mainEl.innerHTML=null;
         console.log("Register Nav clicked");       
